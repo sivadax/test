@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="395da636-c6f6-47eb-8170-c9c9f43b91f8" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="hello-mavenFlow" doc:id="2233e727-3a9e-4c60-a2b5-37aec57a32e3" >
+		<http:listener doc:name="Listener" doc:id="6baacb2d-8a11-43c7-a055-ce2c120c9dbb" config-ref="HTTP_Listener_config" path="/hello"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a5f19f36-c2f8-45a2-a9b6-2601830c256c" message="Hello Maven"/>
+		<set-payload value='#[{ "hello" : "maven" }]' doc:name="Set Payload" doc:id="9b91bdfe-bc43-4bc5-a81b-27415c79812c" />
+	</flow>
+</mule>
